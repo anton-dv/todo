@@ -25,7 +25,6 @@ export const Task: FC<TaskProps> = ({
   });
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.checked, event.target);
     const action = event.target.checked
       ? TaskAction.Complete
       : TaskAction.UnComplete;
