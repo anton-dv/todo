@@ -12,22 +12,14 @@ export type TaskProps = {
   onAction: (index: number, action: TaskAction) => void;
 };
 
-export const Task: FC<TaskProps> = ({
-  index,
-  text,
-  isComplete,
-  createdDate,
-  onAction,
-}) => {
+export const Task: FC<TaskProps> = ({ index, text, isComplete, createdDate, onAction }) => {
   const date = formatDistanceToNow(createdDate, {
     includeSeconds: true,
     addSuffix: true,
   });
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const action = event.target.checked
-      ? TaskAction.Complete
-      : TaskAction.UnComplete;
+    const action = event.target.checked ? TaskAction.Complete : TaskAction.UnComplete;
 
     onAction(index, action);
   };
@@ -36,11 +28,7 @@ export const Task: FC<TaskProps> = ({
   const onDelete = () => onAction(index, TaskAction.Delete);
 
   return (
-    <li
-      className={
-        classes.task + (isComplete ? " " + classes["task--completed"] : "")
-      }
-    >
+    <li className={classes.task + (isComplete ? ` ${classes["task--completed"]}` : "")}>
       <div>
         <input
           type="checkbox"
@@ -51,7 +39,7 @@ export const Task: FC<TaskProps> = ({
         />
         <label htmlFor={text + index} className={classes.task__label}>
           <span className={classes.task__description}>{text}</span>
-          <span className={classes.task__created}>{"created " + date}</span>
+          <span className={classes.task__created}>{`created ${date}`}</span>
         </label>
         <button
           type="button"

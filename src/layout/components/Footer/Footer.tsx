@@ -10,20 +10,12 @@ export type FooterProps = {
   onDeleteCompleted: () => void;
 };
 
-export const Footer: FC<FooterProps> = ({
-  itemsLeft,
-  onSelectFilter,
-  onDeleteCompleted,
-}) => {
+export const Footer: FC<FooterProps> = ({ itemsLeft, onSelectFilter, onDeleteCompleted }) => {
   return (
     <footer className={classes.footer}>
       <span className={classes.footer__count}>{`${itemsLeft} items left`}</span>
       <TaskFilter onSelectFilter={onSelectFilter} />
-      <button
-        className={classes.footer__clear}
-        onClick={onDeleteCompleted}
-        type="button"
-      >
+      <button className={classes.footer__clear} onClick={onDeleteCompleted} type="button">
         Clear completed
       </button>
     </footer>

@@ -27,9 +27,7 @@ export const TaskFilter: FC<TaskFilterProps> = ({ onSelectFilter }) => {
               onClick={() => onClick(mode)}
               className={
                 classes["task-filters__button"] +
-                (mode === selected
-                  ? " " + classes["task-filters__button--selected"]
-                  : "")
+                (mode === selected ? ` ${classes["task-filters__button--selected"]}` : "")
               }
             >
               {mode}

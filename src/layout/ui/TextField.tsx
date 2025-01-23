@@ -8,12 +8,7 @@ export type TextFieldProps = {
   onComplete: (text: string) => void;
 };
 
-export const TextField: FC<TextFieldProps> = ({
-  text,
-  onComplete,
-  placeholder,
-  className,
-}) => {
+export const TextField: FC<TextFieldProps> = ({ text, onComplete, placeholder, className }) => {
   const [value, setValue] = useState(text || "");
 
   const onEnter = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -34,7 +29,6 @@ export const TextField: FC<TextFieldProps> = ({
       onChange={onChange}
       className={`${classes["text-field"]} ${className}`}
       placeholder={placeholder}
-      autoFocus={false}
     />
   );
 };

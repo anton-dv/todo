@@ -12,10 +12,6 @@ export const TaskNewFrom: FC<TaskNewFromProps> = ({ onAddTask }) => {
   };
 
   return (
-    <TextField
-      className={classes["task-new-from"]}
-      onComplete={onComplete}
-      placeholder="What needs to be done?"
-    />
+    <TextField className={classes["task-new-from"]} onComplete={onComplete} placeholder="What needs to be done?" />
   );
 };

@@ -15,12 +15,7 @@ export type TaskListProps = {
   onEdit: (index: number, text: string) => void;
 };
 
-export const TaskList: FC<TaskListProps> = ({
-  list,
-  onAction,
-  onEdit,
-  filterMode,
-}) => {
+export const TaskList: FC<TaskListProps> = ({ list, onAction, onEdit, filterMode }) => {
   const [editIndexes, setEditIndexes] = useState<number[]>([]);
   const filter = useFilter(filterMode);
 
@@ -30,7 +25,7 @@ export const TaskList: FC<TaskListProps> = ({
   };
 
   const onEditComplete = (index: number, text: string) => {
-    const indexes = editIndexes.filter((editIndex) => editIndex !== index);
+    const indexes = editIndexes.filter(editIndex => editIndex !== index);
     setEditIndexes(indexes);
     onEdit(index, text);
   };
@@ -40,24 +35,18 @@ export const TaskList: FC<TaskListProps> = ({
       {list.map((task, index) => {
         if (!filter(task)) return;
         if (editIndexes.includes(index)) {
-          return (
-            <TaskEdit
-              text={task.text}
-              onEditComplete={(text) => onEditComplete(index, text)}
-            />
-          );
-        } else {
-          return (
-            <Task
-              key={index}
-              index={index}
-              text={task.text}
-              isComplete={task.complete}
-              createdDate={task.date}
-              onAction={onActionFilter}
-            />
-          );
+          return <TaskEdit key={index} text={task.text} onEditComplete={text => onEditComplete(index, text)} />;
         }
+        return (
+          <Task
+            key={index}
+            index={index}
+            text={task.text}
+            isComplete={task.complete}
+            createdDate={task.date}
+            onAction={onActionFilter}
+          />
+        );
       })}
     </ul>
   );

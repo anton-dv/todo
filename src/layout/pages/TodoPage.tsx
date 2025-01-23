@@ -19,8 +19,7 @@ export const TodoPage: FC = () => {
   const onAction = (index: number, action: TaskAction) => {
     if (action === TaskAction.Delete) setList(manager.delete(index));
     if (action === TaskAction.Complete) setList(manager.complete(index, true));
-    if (action === TaskAction.UnComplete)
-      setList(manager.complete(index, false));
+    if (action === TaskAction.UnComplete) setList(manager.complete(index, false));
   };
 
   const onAddTask = (text: string) => {
@@ -37,7 +36,7 @@ export const TodoPage: FC = () => {
   };
 
   const itemLeft = () => {
-    return list.filter((task) => !task.complete).length;
+    return list.filter(task => !task.complete).length;
   };
 
   const onDeleteCompleted = () => {
@@ -48,18 +47,9 @@ export const TodoPage: FC = () => {
     <div className={classes["todo-page"]}>
       <Header onAddTask={onAddTask} />
       <section className={classes.main}>
-        <TaskList
-          list={list}
-          onAction={onAction}
-          onEdit={onEdit}
-          filterMode={filterMode}
-        />
+        <TaskList list={list} onAction={onAction} onEdit={onEdit} filterMode={filterMode} />
       </section>
-      <Footer
-        itemsLeft={itemLeft()}
-        onSelectFilter={onSelectFilter}
-        onDeleteCompleted={onDeleteCompleted}
-      />
+      <Footer itemsLeft={itemLeft()} onSelectFilter={onSelectFilter} onDeleteCompleted={onDeleteCompleted} />
     </div>
   );
 };
