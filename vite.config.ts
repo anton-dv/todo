@@ -1,18 +1,15 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import autoprefixer from "autoprefixer";
-import path from "node:path";
 
-// https://vite.dev/config/
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   build: {
-    target: "es2015",
-    outDir: "dist",
+    outDir: "C:/Users/AN/Desktop/todo/dist",
     cssMinify: "esbuild",
     minify: "esbuild",
     rollupOptions: {
-      input: path.resolve(import.meta.dirname, "index.html"),
+      input: "./index.html",
     },
   },
   css: {
