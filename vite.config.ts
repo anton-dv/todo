@@ -5,7 +5,7 @@ import autoprefixer from "autoprefixer";
 /** @type {import('vite').UserConfig} */
 export default defineConfig({
   build: {
-    outDir: "C:/Users/AN/Desktop/todo/dist",
+    outDir: "dist",
     cssMinify: "esbuild",
     minify: "esbuild",
     rollupOptions: {
