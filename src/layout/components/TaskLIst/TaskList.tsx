@@ -39,6 +39,7 @@ export const TaskList: FC<TaskListProps> = ({ list, onAction, onEdit, filterMode
         }
         return (
           <Task
+            timer={task.timer}
             key={index}
             index={index}
             text={task.text}

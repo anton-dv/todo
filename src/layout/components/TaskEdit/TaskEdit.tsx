@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { TextField } from "../../ui/TextField";
+import { TextField } from "../../ui/TextField/TextField";
 import classes from "./task-edit.module.scss";
 
 export type TaskEditProps = {

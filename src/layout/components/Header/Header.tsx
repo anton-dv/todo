@@ -1,9 +1,9 @@
 import { FC } from "react";
 import classes from "./header.module.scss";
-import { TaskNewFrom } from "./TaskNewForm/TaskNewForm";
+import { NewTaskData, TaskNewFrom } from "./TaskNewForm/TaskNewForm";
 
 export type HeaderProps = {
-  onAddTask: (text: string) => void;
+  onAddTask: (text: NewTaskData) => void;
 };
 
 export const Header: FC<HeaderProps> = ({ onAddTask }) => {

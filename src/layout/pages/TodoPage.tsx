@@ -1,4 +1,4 @@
-import { FC, useState } from "react";
+import { FC, useLayoutEffect, useState } from "react";
 
 import { Header } from "../components/Header/Header";
 import { Footer } from "../components/Footer/Footer";
@@ -8,22 +8,29 @@ import { TaskList } from "../components/TaskLIst/TaskList";
 import { FilterMode } from "../../types/FilterMode";
 
 import classes from "./todo-page.module.scss";
+import { NewTaskData } from "../components/Header/TaskNewForm/TaskNewForm";
+import { Tic } from "../../tic/Tic";
 
 export const TodoPage: FC = () => {
   const [filterMode, setFilterMode] = useState(FilterMode.All);
 
   const manager = useTasks();
-
   const [list, setList] = useState(manager.get());
+
+  useLayoutEffect(() => {
+    Tic.add(1, tasks => setList(tasks));
+  }, []);
 
   const onAction = (index: number, action: TaskAction) => {
     if (action === TaskAction.Delete) setList(manager.delete(index));
     if (action === TaskAction.Complete) setList(manager.complete(index, true));
     if (action === TaskAction.UnComplete) setList(manager.complete(index, false));
+    if (action === TaskAction.Play) setList(manager.timer(index, true));
+    if (action === TaskAction.Pause) setList(manager.timer(index, false));
   };
 
-  const onAddTask = (text: string) => {
-    setList(manager.add(text));
+  const onAddTask = (data: NewTaskData) => {
+    setList(manager.add(data));
   };
 
   const onSelectFilter = (mode: FilterMode) => {

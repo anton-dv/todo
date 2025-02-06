@@ -3,4 +3,6 @@ export enum TaskAction {
   Delete = "Delete",
   Complete = "Complete",
   UnComplete = "UnComplete",
+  Play = "Play",
+  Pause = "Pause",
 }

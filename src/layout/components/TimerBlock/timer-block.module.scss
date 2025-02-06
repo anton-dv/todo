@@ -1,0 +1,37 @@
+.timer-block {
+  display: flex;
+  gap: 3px;
+  font-size: 13px;
+  color: gray;
+  padding-inline: 10px;
+}
+
+.timer-block__button {
+  top: 0;
+  bottom: -3px;
+  height: 18px;
+  font-size: 34px;
+  color: #cc9a9a;
+  margin: 0;
+  transition: color 0.2s ease-out;
+  cursor: pointer;
+  font-size: 19px;
+
+  &:hover {
+    color: #af5b5e;
+  }
+}
+
+.timer-block__button--play {
+  margin-top: -5px;
+  &::after {
+    content: "▶";
+  }
+}
+
+.timer-block__button--pause {
+  margin-top: -6px;
+  &::after {
+    content: "⏸";
+  }
+}

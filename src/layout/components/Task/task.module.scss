@@ -39,16 +39,25 @@
 .task__label {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 15px 85px 15px 60px;
+  justify-content: flex-end;
+  padding: 15px 70px 15px 60px;
 }
 
 .task__created {
-  font-size: 13px;
+  min-width: 40%;
+  width: 40%;
+  font-size: 12px;
   color: gray;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .task__description {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: auto;
   word-break: break-all;
   display: block;
   line-height: 1.2;
@@ -86,5 +95,7 @@
   right: 45px;
   &:after {
     content: "✎";
+    display: block;
+    margin-top: -3px;
   }
 }

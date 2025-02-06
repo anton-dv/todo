@@ -1,11 +1,13 @@
+import { NewTaskData } from "../layout/components/Header/TaskNewForm/TaskNewForm";
 import { TaskObject } from "../types/TaskObject";
 
-export const useTasks = () => {
-  const dataKey = "tasks";
+export const dataKey = "tasks-t";
 
+export const useTasks = () => {
   const getItems = (): TaskObject[] => {
     const json = localStorage.getItem(dataKey);
-    return json ? (JSON.parse(json) as TaskObject[]) : [];
+    const result = json ? (JSON.parse(json) as TaskObject[]) : [];
+    return result.map(e => (e.timer ? e : { ...e, timer: new Date(0) }));
   };
 
   const setItems = (list: TaskObject[]): TaskObject[] => {
@@ -18,11 +20,13 @@ export const useTasks = () => {
     get: getItems,
     set: setItems,
 
-    add: (text: string): TaskObject[] => {
+    add: (data: NewTaskData): TaskObject[] => {
       const task: TaskObject = {
-        text,
+        timer: data.timer,
+        text: data.text,
         complete: false,
         date: new Date(),
+        activeTimer: false,
       };
 
       const tasks = [task, ...getItems()];
@@ -55,6 +59,14 @@ export const useTasks = () => {
 
     deleteCompleted: (): TaskObject[] => {
       const tasks = getItems().filter(task => !task.complete);
+      return setItems(tasks);
+    },
+
+    timer: (index: number, active: boolean): TaskObject[] => {
+      const tasks = getItems();
+      if (!tasks[index]) return tasks;
+      tasks[index].activeTimer = active;
+
       return setItems(tasks);
     },
   };

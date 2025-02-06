@@ -56,6 +56,10 @@ export default [
       "import/no-extraneous-dependencies": "off",
       "no-underscore-dangle": "off",
       "consistent-return": "off",
+      "prettier/prettier": "warn",
+      "no-multi-assign": "warn",
+      "@typescript-eslint/no-unused-vars": "warn",
+      "no-use-before-define": "off",
     },
   },
   {
