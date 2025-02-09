@@ -7,6 +7,7 @@ export type TimerBlockProps = {
   onPlay: () => void;
   onPause: () => void;
 };
+
 export const TimerBlock: FC<TimerBlockProps> = ({ timer, onPlay, onPause }) => {
   return (
     <div className={classes["timer-block"]}>
