@@ -4,13 +4,14 @@ import { TaskAction } from "../../../types/TaskAction";
 
 import classes from "./task.module.scss";
 import { TimerBlock } from "../TimerBlock/TimerBlock";
+import { TimerDate } from "../../../types/TimerDate";
 
 export type TaskProps = {
   index: number;
   text: string;
   isComplete?: boolean;
   createdDate: Date;
-  timer: Date;
+  timer: TimerDate;
   onAction: (index: number, action: TaskAction) => void;
 };
 

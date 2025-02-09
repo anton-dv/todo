@@ -1,18 +1,13 @@
-import { FC, useEffect, useState } from "react";
+import { FC } from "react";
 import classes from "./timer-block.module.scss";
+import { TimerDate } from "../../../types/TimerDate";
 
 export type TimerBlockProps = {
-  timer: Date;
+  timer: TimerDate;
   onPlay: () => void;
   onPause: () => void;
 };
 export const TimerBlock: FC<TimerBlockProps> = ({ timer, onPlay, onPause }) => {
-  const [time, setTime] = useState(new Date(timer as Date));
-
-  useEffect(() => {
-    setTime(new Date(timer as Date));
-  }, [timer]);
-
   return (
     <div className={classes["timer-block"]}>
       <button
@@ -25,11 +20,11 @@ export const TimerBlock: FC<TimerBlockProps> = ({ timer, onPlay, onPause }) => {
         onClick={onPause}
         className={`${classes["timer-block__button"]} ${classes["timer-block__button--pause"]}`}
       ></button>
-      <span className={classes["timer-block__clock"]}>{formatTime(time)}</span>
+      <span className={classes["timer-block__clock"]}>{formatDate(timer)}</span>
     </div>
   );
 };
 
-const formatTime = (time: Date) => {
-  return `${time.getMinutes().toString().padStart(2, "0")}:${time.getSeconds().toString().padStart(2, "0")}`;
+const formatDate = (timer: TimerDate) => {
+  return `${timer.min.toString().padStart(2, "0")}:${timer.sec.toString().padStart(2, "0")}`;
 };

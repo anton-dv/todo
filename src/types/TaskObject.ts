@@ -1,5 +1,7 @@
+import { TimerDate } from "./TimerDate";
+
 export type TaskObject = {
-  timer: Date;
+  timer: TimerDate;
   text: string;
   date: Date;
   complete: boolean;

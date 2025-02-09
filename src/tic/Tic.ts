@@ -20,9 +20,8 @@ export class Tic {
     setInterval(() => {
       const json = localStorage.getItem(dataKey);
       const tasks = json ? (JSON.parse(json) as TaskObject[]) : [];
-      const normTasks = tasks.map(e => (e.timer ? e : { ...e, timer: new Date(0) }));
-      this.#tack(normTasks);
-      this.#handlers.forEach((func: TicHandler) => func(normTasks));
+      this.#tack(tasks);
+      this.#handlers.forEach((func: TicHandler) => func(tasks));
     }, this.#delay);
   };
 
@@ -40,15 +39,18 @@ export class Tic {
     if (tasks.every(task => !task.activeTimer)) return;
     const result = tasks.map(task => {
       if (task.activeTimer) {
-        if (new Date(task.timer).getMinutes() === 59 && new Date(task.timer).getSeconds() === 59)
-          return {
-            ...task,
-            activeTimer: false,
-          };
+        const newTimer = task.timer;
+        const newSec = newTimer.sec + 1;
 
+        if (newSec === 60) {
+          newTimer.sec = 0;
+          newTimer.min += 1;
+        } else {
+          newTimer.sec = newSec;
+        }
         return {
           ...task,
-          timer: new Date(new Date(task.timer).getTime() + this.#delay / 2),
+          timer: newTimer,
         };
       }
       return task;

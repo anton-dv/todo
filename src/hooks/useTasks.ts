@@ -1,13 +1,12 @@
 import { NewTaskData } from "../layout/components/Header/TaskNewForm/TaskNewForm";
 import { TaskObject } from "../types/TaskObject";
 
-export const dataKey = "tasks-t";
+export const dataKey = "tasks-2";
 
 export const useTasks = () => {
   const getItems = (): TaskObject[] => {
     const json = localStorage.getItem(dataKey);
-    const result = json ? (JSON.parse(json) as TaskObject[]) : [];
-    return result.map(e => (e.timer ? e : { ...e, timer: new Date(0) }));
+    return json ? (JSON.parse(json) as TaskObject[]) : [];
   };
 
   const setItems = (list: TaskObject[]): TaskObject[] => {
