@@ -92,12 +92,13 @@ export class Tic {
     if (tasks.every(task => !task.activeTimer)) return;
     const result = tasks.map(task => {
       if (task.activeTimer) {
+        if (!task.timer.sec && !task.timer.min) return task;
         const newTimer = task.timer;
-        const newSec = newTimer.sec + 1;
+        const newSec = newTimer.sec - 1;
 
-        if (newSec === 60) {
-          newTimer.sec = 0;
-          newTimer.min += 1;
+        if (newSec <= -1) {
+          newTimer.sec = 59;
+          newTimer.min -= 1;
         } else {
           newTimer.sec = newSec;
         }
